@@ -19,7 +19,6 @@ export default function SettingsScreen() {
       <div>
         <Button
           text="Back"
-          color="primary"
           isOutlined
           onClick={() =>
             onCreateChampionshipClickBack({
@@ -28,13 +27,7 @@ export default function SettingsScreen() {
             })
           }
         />
-        <button
-          className="btn btn-primary btn-xl mt-2 w-full"
-          type="button"
-          onClick={() => console.log("next")}
-        >
-          Next
-        </button>
+        <Button text="Next" hasMargin onClick={() => console.log("next")} />
       </div>
     </section>
   );
