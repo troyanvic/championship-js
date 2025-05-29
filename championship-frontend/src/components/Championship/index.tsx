@@ -24,8 +24,6 @@ export default function Championship() {
 function ChampionshipContent() {
   const { store } = useAppContext();
 
-  console.log("ChampionshipContent store", store);
-
   return (
     <main className="bg-primary-content h-screen p-4 text-zinc-800">
       {store.isHomeShown && <HomeScreen />}
