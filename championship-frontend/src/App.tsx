@@ -1,5 +1,7 @@
+import Championship from "./components/Championship";
+
 function App() {
-  return <h1>Championship app</h1>;
+  return <Championship />;
 }
 
 export default App;
