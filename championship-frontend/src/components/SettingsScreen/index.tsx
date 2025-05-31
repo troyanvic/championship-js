@@ -2,7 +2,7 @@ import { useAppContext } from "../../hooks/useAppContext.ts";
 
 // import components
 import Button from "../Button";
-import Subtitle from "../Subtitle";
+import SettingsTeams from "../SettingsTeams/SettingsTeams.tsx";
 import Title from "../Title";
 
 export default function SettingsScreen() {
@@ -13,7 +13,7 @@ export default function SettingsScreen() {
     <section className="flex h-full flex-col justify-between">
       <div>
         <Title title="Championship Settings" />
-        <Subtitle title="Add teams" />
+        <SettingsTeams />
       </div>
 
       <div>

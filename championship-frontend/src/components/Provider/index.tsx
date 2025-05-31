@@ -7,6 +7,19 @@ export type CreateChampionshipType = {
   isSettingsShown: boolean;
 };
 
+export type AddTeamType = {
+  id: number;
+  name: string;
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalDifference: number;
+  points: number;
+};
+
 export default function AppProvider({
   store: initialStore,
   children,
@@ -23,6 +36,37 @@ export default function AppProvider({
         ...prevStore,
         isHomeShown: obj.isHomeShown,
         isSettingsShown: obj.isSettingsShown,
+      }));
+    },
+    onAddTeamClick: (obj: AddTeamType) => {
+      setStore((prevStore) => ({
+        ...prevStore,
+        teams: [...prevStore.teams, obj],
+      }));
+    },
+    showTeamForm: (payload: boolean) => {
+      setStore((prevStore) => ({
+        ...prevStore,
+        isAddTeamFormShown: payload,
+      }));
+    },
+    editTeam: (obj: AddTeamType) => {
+      setStore((prevStore) => ({
+        ...prevStore,
+        teams: prevStore.teams.map((team) =>
+          team.id === obj.id
+            ? {
+                ...team,
+                name: obj.name,
+              }
+            : team,
+        ),
+      }));
+    },
+    removeTeam: (id: number) => {
+      setStore((prevStore) => ({
+        ...prevStore,
+        teams: prevStore.teams.filter((team) => team.id !== id),
       }));
     },
   };

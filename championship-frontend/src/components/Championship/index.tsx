@@ -12,6 +12,8 @@ export default function Championship() {
     isHomeShown: true,
     isSettingsShown: false,
     isTournamentShown: false,
+    isAddTeamFormShown: false,
+    teams: [],
   };
 
   return (
@@ -23,6 +25,8 @@ export default function Championship() {
 
 function ChampionshipContent() {
   const { store } = useAppContext();
+
+  console.log("store", store);
 
   return (
     <main className="bg-primary-content h-screen p-4 text-zinc-800">
