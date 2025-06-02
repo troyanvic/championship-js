@@ -14,6 +14,11 @@ export default function Championship() {
     isTournamentShown: false,
     isAddTeamFormShown: false,
     teams: [],
+    durations: {
+      tournamentDuration: 120,
+      gameDuration: 5,
+      breakDuration: 1,
+    },
   };
 
   return (

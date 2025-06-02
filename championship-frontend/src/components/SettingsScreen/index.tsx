@@ -1,33 +1,44 @@
+import { useState } from "react";
 import { useAppContext } from "../../hooks/useAppContext.ts";
 
 // import components
 import Button from "../Button";
+import SettingsGame from "../SettingsGame";
 import SettingsTeams from "../SettingsTeams/SettingsTeams.tsx";
 import Title from "../Title";
 
 export default function SettingsScreen() {
+  const [step, setStep] = useState(1);
   const { onCreateChampionshipClick: onCreateChampionshipClickBack } =
     useAppContext();
+
+  const handleBackClick = () => {
+    if (step === 1) {
+      onCreateChampionshipClickBack({
+        isHomeShown: true,
+        isSettingsShown: false,
+      });
+    }
+
+    if (step === 2) {
+      setStep(1);
+    }
+  };
+
+  const handleNextClick = () => {
+    setStep(2);
+  };
 
   return (
     <section className="flex h-full flex-col justify-between">
       <div>
         <Title title="Championship Settings" />
-        <SettingsTeams />
+        {step === 1 ? <SettingsTeams /> : <SettingsGame />}
       </div>
 
       <div>
-        <Button
-          text="Back"
-          isOutlined
-          onClick={() =>
-            onCreateChampionshipClickBack({
-              isHomeShown: true,
-              isSettingsShown: false,
-            })
-          }
-        />
-        <Button text="Next" hasMargin onClick={() => console.log("next")} />
+        <Button text="Back" isOutlined onClick={handleBackClick} />
+        <Button text="Next" hasMargin onClick={handleNextClick} />
       </div>
     </section>
   );

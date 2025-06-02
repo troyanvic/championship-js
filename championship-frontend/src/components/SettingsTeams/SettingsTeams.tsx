@@ -33,7 +33,7 @@ export default function SettingsTeams() {
         <SettingsAddTeam />
       ) : (
         <button
-          className="btn btn-link p-0 pt-2"
+          className="btn btn-link p-0"
           type="button"
           onClick={() => {
             showTeamForm(true);

@@ -12,6 +12,7 @@ export default function SettingsAddTeam() {
 
   const generateUniqueId: any = () => {
     const newId = Math.floor(Math.random() * 10000);
+    
     return teams.some((team) => team.id === newId) ? generateUniqueId() : newId;
   };
 

@@ -17,9 +17,7 @@ export default function SettingsEditTeam({
   const [isError, setIsError] = useState(false);
 
   const handleSave = () => {
-    console.log("save", id);
     editTeam({ id, name });
-
     onSave();
   };
 

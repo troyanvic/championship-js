@@ -20,12 +20,19 @@ export type EditTeamType = {
   name: string;
 };
 
+export type Durations = {
+  tournamentDuration: number;
+  gameDuration: number;
+  breakDuration: number;
+};
+
 export type AppProviderStore = {
   isHomeShown: boolean;
   isSettingsShown: boolean;
   isTournamentShown: boolean;
   isAddTeamFormShown: boolean;
   teams: Team[];
+  durations: Durations;
 };
 
 type AppContextType = {
@@ -35,6 +42,7 @@ type AppContextType = {
   showTeamForm: (payload: boolean) => void;
   editTeam: (obj: EditTeamType) => void;
   removeTeam: (id: number) => void;
+  setDurations: (obj: { [p: string]: number }) => void;
 };
 
 const AppContext = createContext<AppContextType | null>(null);

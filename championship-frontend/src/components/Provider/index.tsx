@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-import AppContext, { type AppProviderStore } from "../../context/AppContext";
+import AppContext, {
+  type AppProviderStore,
+  type Durations,
+} from "../../context/AppContext";
 
 export type CreateChampionshipType = {
   isHomeShown: boolean;
@@ -50,7 +53,7 @@ export default function AppProvider({
         isAddTeamFormShown: payload,
       }));
     },
-    editTeam: (obj: AddTeamType) => {
+    editTeam: (obj: { id: number; name: string }) => {
       setStore((prevStore) => ({
         ...prevStore,
         teams: prevStore.teams.map((team) =>
@@ -67,6 +70,12 @@ export default function AppProvider({
       setStore((prevStore) => ({
         ...prevStore,
         teams: prevStore.teams.filter((team) => team.id !== id),
+      }));
+    },
+    setDurations: (obj: { [p: string]: number }) => {
+      setStore((prevStore) => ({
+        ...prevStore,
+        durations: obj as Durations,
       }));
     },
   };
