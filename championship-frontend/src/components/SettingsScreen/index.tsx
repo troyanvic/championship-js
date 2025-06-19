@@ -9,8 +9,10 @@ import Title from "../Title";
 
 export default function SettingsScreen() {
   const [step, setStep] = useState(1);
-  const { onCreateChampionshipClick: onCreateChampionshipClickBack } =
-    useAppContext();
+  const {
+    onCreateChampionshipClick: onCreateChampionshipClickBack,
+    store: { teams },
+  } = useAppContext();
 
   const handleBackClick = () => {
     if (step === 1) {
@@ -38,7 +40,12 @@ export default function SettingsScreen() {
 
       <div>
         <Button text="Back" isOutlined onClick={handleBackClick} />
-        <Button text="Next" hasMargin onClick={handleNextClick} />
+        <Button
+          text="Next"
+          hasMargin
+          onClick={handleNextClick}
+          isDisabled={teams.length < 2}
+        />
       </div>
     </section>
   );
