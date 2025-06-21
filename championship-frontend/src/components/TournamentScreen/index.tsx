@@ -1,3 +1,11 @@
+import Fixtures from "../Fixtures";
+import Table from "../Table";
+
 export default function TournamentScreen() {
-  return <div>Tournament</div>;
+  return (
+    <section>
+      <Table />
+      <Fixtures />
+    </section>
+  );
 }
