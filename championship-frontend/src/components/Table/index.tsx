@@ -7,7 +7,7 @@ export default function Table() {
   } = useAppContext();
 
   return (
-    <div className="mb-4">
+    <div className="mb-6">
       <Title title="Table" />
 
       <table className="table" data-theme="light">
