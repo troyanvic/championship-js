@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../../hooks/useAppContext.ts";
 
 // import components
@@ -9,10 +9,34 @@ import Title from "../Title";
 
 export default function SettingsScreen() {
   const [step, setStep] = useState(1);
+  const [buttonText, setButtonText] = useState("Next");
+  const [isDisabled, setIsDisabled] = useState(true);
   const {
     onCreateChampionshipClick: onCreateChampionshipClickBack,
-    store: { teams },
+    onGenerateTournamentClick,
+    store: { teams, durations },
   } = useAppContext();
+
+  useEffect(() => {
+    if (step === 1) {
+      setIsDisabled(teams.length < 2);
+    }
+
+    if (step === 2) {
+      const { tournamentDuration, gameDuration, breakDuration } = durations;
+
+      if (
+        tournamentDuration < gameDuration ||
+        tournamentDuration < 5 ||
+        gameDuration < 5 ||
+        breakDuration < 1
+      ) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      }
+    }
+  });
 
   const handleBackClick = () => {
     if (step === 1) {
@@ -24,11 +48,24 @@ export default function SettingsScreen() {
 
     if (step === 2) {
       setStep(1);
+      setButtonText("Next");
     }
   };
 
   const handleNextClick = () => {
-    setStep(2);
+    if (step === 1) {
+      setIsDisabled(teams.length < 2);
+      setStep(2);
+      setButtonText("Generate");
+    }
+
+    if (step === 2) {
+      onGenerateTournamentClick({
+        isHomeShown: false,
+        isSettingsShown: false,
+        isTournamentShown: true,
+      });
+    }
   };
 
   return (
@@ -41,10 +78,10 @@ export default function SettingsScreen() {
       <div>
         <Button text="Back" isOutlined onClick={handleBackClick} />
         <Button
-          text="Next"
+          text={buttonText}
           hasMargin
           onClick={handleNextClick}
-          isDisabled={teams.length < 2}
+          isDisabled={isDisabled}
         />
       </div>
     </section>

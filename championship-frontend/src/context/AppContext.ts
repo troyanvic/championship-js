@@ -1,6 +1,9 @@
 import { createContext } from "react";
 
-import { type CreateChampionshipType } from "../components/Provider";
+import {
+  type CreateChampionshipType,
+  type GenerateTournamentType,
+} from "../components/Provider";
 
 export type Team = {
   readonly id: number;
@@ -38,6 +41,7 @@ export type AppProviderStore = {
 type AppContextType = {
   store: AppProviderStore;
   onCreateChampionshipClick: (obj: CreateChampionshipType) => void;
+  onGenerateTournamentClick: (obj: GenerateTournamentType) => void;
   onAddTeamClick: (obj: Team) => void;
   showTeamForm: (payload: boolean) => void;
   editTeam: (obj: EditTeamType) => void;

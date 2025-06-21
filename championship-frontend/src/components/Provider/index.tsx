@@ -23,6 +23,14 @@ export type AddTeamType = {
   points: number;
 };
 
+export type GenerateTournamentType = {
+  //teams: AddTeamType[];
+  //durations: Durations;
+  isHomeShown: boolean;
+  isSettingsShown: boolean;
+  isTournamentShown: boolean;
+};
+
 export default function AppProvider({
   store: initialStore,
   children,
@@ -39,6 +47,14 @@ export default function AppProvider({
         ...prevStore,
         isHomeShown: obj.isHomeShown,
         isSettingsShown: obj.isSettingsShown,
+      }));
+    },
+    onGenerateTournamentClick: (obj: GenerateTournamentType) => {
+      setStore((prevStore) => ({
+        ...prevStore,
+        isHomeShown: obj.isHomeShown,
+        isSettingsShown: obj.isSettingsShown,
+        isTournamentShown: obj.isTournamentShown,
       }));
     },
     onAddTeamClick: (obj: AddTeamType) => {

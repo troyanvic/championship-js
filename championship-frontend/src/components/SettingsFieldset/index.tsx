@@ -27,12 +27,10 @@ export default function SettingsFieldset({
 
     setValue(val);
     setIsError(val < minValue);
-  };
 
-  const handleBlur = () => {
     setDurations({
       ...durations,
-      [type]: value,
+      [type]: val,
     });
   };
 
@@ -48,7 +46,6 @@ export default function SettingsFieldset({
         value={value}
         min={minValue}
         onChange={(e) => handleChange(e)}
-        onBlur={handleBlur}
       />
       {isError && (
         <p className="label text-error">Minimum value is {minValue}.</p>
